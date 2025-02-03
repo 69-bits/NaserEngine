@@ -35,18 +35,18 @@ BaseApp::run(HINSTANCE hInstance,
 
   // Main message loop
   MSG msg = { 0 };
-    while (WM_QUIT != msg.message) {
-      if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
-      }
-      else {
-        update();
-        render();
-      }
+  while (WM_QUIT != msg.message) {
+    if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+      TranslateMessage(&msg);
+      DispatchMessage(&msg);
     }
+    else {
+      update();
+      render();
+    }
+  }
 
-    destroy();
+  destroy();
 
   return (int)msg.wParam;
 

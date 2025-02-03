@@ -36,23 +36,37 @@
 
 // Structures
 struct
-  SimpleVertex {
+SimpleVertex {
   XMFLOAT3 Pos;
   XMFLOAT2 Tex;
 };
 
+// Constant Buffers
 struct
-  CBNeverChanges {
+CBNeverChanges {
   XMMATRIX mView;
 };
 
+// Representa la matriz de proyección
 struct
-  CBChangeOnResize {
+CBChangeOnResize {
   XMMATRIX mProjection;
 };
 
+// Representa la matriz del mundo
 struct
-  CBChangesEveryFrame {
+CBChangesEveryFrame {
   XMMATRIX mWorld;
   XMFLOAT4 vMeshColor;
 };
+
+// Enumeración de los tipos de extensión de las texturas
+enum 
+ExtensionType {
+  DDS = 0,
+  PNG = 1,
+  JPG = 2,
+  BMP = 3,
+  TGA = 4,
+  UNKNOWN = 5
+};  

@@ -13,6 +13,8 @@
 //#include "resource.h"
 #include "Prerequisites.h"
 #include "Window.h"
+#include "Device.h"
+#include "DeviceContext.h"
 
 
 //--------------------------------------------------------------------------------------

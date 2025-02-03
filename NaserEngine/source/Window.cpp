@@ -1,6 +1,9 @@
 #include "Window.h"
 
-HRESULT Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc) {
+HRESULT
+Window::init(HINSTANCE hInstance,
+  int nCmdShow,
+  WNDPROC wndproc) {
   m_hInst = hInstance;
   // Register class
   WNDCLASSEX wcex;
@@ -18,18 +21,17 @@ HRESULT Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc) {
   wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_TUTORIAL1);
 
 
-  if (!RegisterClassEx(&wcex))
-  {
+  if (!RegisterClassEx(&wcex)) {
     MessageBox(nullptr, "Call to RegisterClassEx failed!",
       "Win32 Guided Tour",
       MB_OK);
     ERROR("Window", "Init", "CHECK FOR Registerclassex");
 
-      return E_FAIL;
+    return E_FAIL;
   }
-    
 
-  RECT rc = { 0, 0, 1200, 1010};
+
+  RECT rc = { 0, 0, 1200, 1010 };
   m_rect = rc;
   AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
   m_hWnd = CreateWindow("TutorialWindowClass", m_windowName.c_str(), WS_OVERLAPPEDWINDOW,
