@@ -12,7 +12,7 @@ public:
   ~Texture() = default;
 
   /**
-   * @brief Inicializa la textura.
+   * @brief Inicializa la textura. A partir de un archivo.
    *
    * @param device Dispositivo.
    * @param fileName Nombre del archivo.
@@ -24,7 +24,7 @@ public:
       const std::string& fileName,
       ExtensionType extensionType);
   /**
-   * @brief Inicializa la textura.
+   * @brief Inicializa la textura. Dentro de la aplicación.
    *
    * @param device Dispositivo.
    * @param width Ancho de la textura.

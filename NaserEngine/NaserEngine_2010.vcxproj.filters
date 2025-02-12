@@ -72,6 +72,9 @@
     <ClCompile Include="NaserEngine.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\Swapchain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NaserEngine.rc">

@@ -45,6 +45,7 @@ Device::CreateTexture2D(const D3D11_TEXTURE2D_DESC* pDesc,
   }
   return hr;
 }
+
 HRESULT
 Device::CreateDepthStencilView(ID3D11Resource* pResource,
   const D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc,

@@ -131,6 +131,7 @@ DeviceContext::OMSetRenderTargets(unsigned int NumViews,
 			"Both ppRenderTargetViews and pDepthStencilView are nullptr");
 		return;
 	}
+  // Validar el número de vistas
 	if (NumViews > 0 && !ppRenderTargetViews) {
 		ERROR("DeviceContext", "OMSetRenderTargets",
 			"ppRenderTargetViews is nullptr, but NumViews > 0");
@@ -158,6 +159,7 @@ DeviceContext::ClearRenderTargetView(ID3D11RenderTargetView* pRenderTargetView,
 		ERROR("DeviceContext", "ClearRenderTargetView", "pRenderTargetView is nullptr");
 		return;
 	}
+  // Validar el color RGBA
 	if (!ColorRGBA) {
 		ERROR("DeviceContext", "ClearRenderTargetView", "ColorRGBA is nullptr");
 		return;
