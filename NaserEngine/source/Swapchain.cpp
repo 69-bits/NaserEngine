@@ -5,7 +5,7 @@
 #include "Window.h"
 
 HRESULT
-Swapchain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffer, Window& window) {
+Swapchain::init(Device& device, DeviceContext& deviceContext, Textura& backBuffer, Window& window) {
   if (!window.m_hWnd) {
     ERROR("SwapChain", "init", "Invalid Window handle (m_hWnd is nullptr)");
     return E_POINTER;
@@ -66,7 +66,7 @@ Swapchain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffe
     return hr;
   }
 
-  // Configurar la descripción del SwapChain
+  // Configurar la descripcion del SwapChain
   DXGI_SWAP_CHAIN_DESC sd;
   memset(&sd, 0, sizeof(sd));
   sd.BufferCount = 1;
@@ -80,9 +80,9 @@ Swapchain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffe
   sd.Windowed = TRUE;
   sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
   sd.SampleDesc.Count = m_sampleCount;
-  sd.SampleDesc.Quality = m_qualityLevels - 1;  // Máxima calidad
+  sd.SampleDesc.Quality = m_qualityLevels - 1;  // Maxima calidad
 
-  // Obtener la fábrica DXGI
+  // Obtener la fabrica DXGI
   hr = device.m_device->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&m_dxgiDevice));
   if (FAILED(hr)) {
     ERROR("SwapChain", "init", "Failed to query IDXGIDevice");

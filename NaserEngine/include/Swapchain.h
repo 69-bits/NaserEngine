@@ -5,8 +5,7 @@
 class Device;
 class DeviceContext;
 class Window;
-class Texture;
-
+class Textura;
 
   class 
   Swapchain {
@@ -25,7 +24,7 @@ class Texture;
     HRESULT 
     init(Device& device,
       DeviceContext& deviceContext,
-      Texture& backBuffer,
+      Textura& backBuffer,
       Window& window);
 
     /**

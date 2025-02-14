@@ -17,9 +17,9 @@ public:
 	HRESULT
 	init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc);
 
-	/**
-		 * @brief Actualiza el estado de la ventana.
-	   */
+  /* @brief Actualiza el estado de la ventana.
+  * @return void
+	*/
 	void
 	update();
 	/**

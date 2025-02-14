@@ -1,4 +1,7 @@
 #include "DeviceContext.h"
+#include "Device.h"
+#include "DeviceContext.h"
+#include "Textura.h"
 
 void
 DeviceContext::RSSetViewports(unsigned int NumViewports,
@@ -125,13 +128,13 @@ void
 DeviceContext::OMSetRenderTargets(unsigned int NumViews,
 	ID3D11RenderTargetView* const* ppRenderTargetViews,
 	ID3D11DepthStencilView* pDepthStencilView) {
-	// Validar los parámetros
+	// Validar los parametros
 	if (!ppRenderTargetViews && !pDepthStencilView) {
 		ERROR("DeviceContext", "OMSetRenderTargets",
 			"Both ppRenderTargetViews and pDepthStencilView are nullptr");
 		return;
 	}
-  // Validar el número de vistas
+  // Validar el numero de vistas
 	if (NumViews > 0 && !ppRenderTargetViews) {
 		ERROR("DeviceContext", "OMSetRenderTargets",
 			"ppRenderTargetViews is nullptr, but NumViews > 0");
@@ -142,19 +145,19 @@ DeviceContext::OMSetRenderTargets(unsigned int NumViews,
 }
 void
 DeviceContext::IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY Topology) {
-	// Validar el parámetro Topology
+	// Validar el parametro Topology
 	if (Topology == D3D11_PRIMITIVE_TOPOLOGY_UNDEFINED) {
 		ERROR("DeviceContext", "IASetPrimitiveTopology",
 			"Topology is D3D11_PRIMITIVE_TOPOLOGY_UNDEFINED");
 		return;
 	}
-	// Asignar la topología al Input Assembler
+	// Asignar la topologia al Input Assembler
 	m_deviceContext->IASetPrimitiveTopology(Topology);
 }
 void
 DeviceContext::ClearRenderTargetView(ID3D11RenderTargetView* pRenderTargetView,
 	const float ColorRGBA[4]) {
-	// Validar parámetros
+	// Validar parametros
 	if (!pRenderTargetView) {
 		ERROR("DeviceContext", "ClearRenderTargetView", "pRenderTargetView is nullptr");
 		return;
@@ -172,7 +175,7 @@ DeviceContext::ClearDepthStencilView(ID3D11DepthStencilView* pDepthStencilView,
 	unsigned int ClearFlags,
 	float Depth,
 	UINT8 Stencil) {
-	// Validar parámetros
+	// Validar parametros
 	if (!pDepthStencilView) {
 		ERROR("DeviceContext", "ClearDepthStencilView",
 			"pDepthStencilView is nullptr");
@@ -191,7 +194,7 @@ void
 DeviceContext::VSSetConstantBuffers(unsigned int StartSlot,
 	unsigned int NumBuffers,
 	ID3D11Buffer* const* ppConstantBuffers) {
-	// Validar parámetros
+	// Validar parametros
 	if (!ppConstantBuffers) {
 		ERROR("DeviceContext", "VSSetConstantBuffers", "ppConstantBuffers is nullptr");
 		return;
@@ -203,7 +206,7 @@ void
 DeviceContext::PSSetConstantBuffers(unsigned int StartSlot,
 	unsigned int NumBuffers,
 	ID3D11Buffer* const* ppConstantBuffers) {
-	// Validar parámetros
+	// Validar parametros
 	if (!ppConstantBuffers) {
 		ERROR("DeviceContext", "PSSetConstantBuffers", "ppConstantBuffers is nullptr");
 		return;
@@ -215,11 +218,16 @@ void
 DeviceContext::DrawIndexed(unsigned int IndexCount,
 	unsigned int StartIndexLocation,
 	int BaseVertexLocation) {
-	// Validar parámetros
+	// Validar parametros
 	if (IndexCount == 0) {
 		ERROR("DeviceContext", "DrawIndexed", "IndexCount is zero");
 		return;
 	}
 	// Ejecutar el dibujo
 	m_deviceContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
+}
+
+void 
+DeviceContext::destroy() {
+  SAFE_RELEASE(m_deviceContext);
 }

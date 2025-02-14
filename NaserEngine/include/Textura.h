@@ -6,10 +6,10 @@ class Device;
 
 
 class 
-Texture {
+Textura {
 public:
-  Texture() = default;
-  ~Texture() = default;
+  Textura() = default;
+  ~Textura() = default;
 
   /**
    * @brief Inicializa la textura. A partir de un archivo.
@@ -68,7 +68,7 @@ public:
 
 public:
   ID3D11Texture2D* m_Texture = nullptr; ///< Textura.
-  ID3D11ShaderResourceView* m_ShaderResourceView; ///< Vista de recursos de sombreador.
+  ID3D11ShaderResourceView* m_textureFromImg; ///< Vista de recursos de sombreador.
 private:
 
 };

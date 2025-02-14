@@ -1,4 +1,5 @@
 #include "Device.h"
+
 HRESULT
 Device::CreateRenderTargetView(ID3D11Resource* pResource,
   const D3D11_RENDER_TARGET_VIEW_DESC* pDesc,
@@ -23,6 +24,7 @@ Device::CreateRenderTargetView(ID3D11Resource* pResource,
   }
   return hr;
 }
+
 HRESULT
 Device::CreateTexture2D(const D3D11_TEXTURE2D_DESC* pDesc,
   const D3D11_SUBRESOURCE_DATA* pInitialData,
@@ -222,4 +224,8 @@ Device::CreateBlendState(const D3D11_BLEND_DESC* pBlendStateDesc,
       ("Failed to create BlendState. HRESULT: " + std::to_string(hr)).c_str());
   }
   return hr;
+}
+void 
+Device::destroy() {
+  SAFE_RELEASE(m_device);
 }
