@@ -1,32 +1,36 @@
-NaserEngine
-NaserEngine es un motor de juego ligero y modular construido sobre DirectX 11. Está diseñado para ofrecer una base sólida en gráficos y renderizado en Windows, facilitando el aprendizaje y desarrollo de aplicaciones interactivas y juegos. El motor implementa componentes esenciales como la creación de dispositivos Direct3D, gestión del swap chain, render target views, depth stencil views y manejo de texturas, integrados en una arquitectura modular y extensible.
+# NaserEngine
 
-Características
-DirectX 11 Rendering Pipeline:
-Implementa las etapas fundamentales de DirectX 11, incluyendo la creación y configuración del dispositivo, el contexto, el swap chain y los recursos de renderizado.
+**NaserEngine** es un motor de juego ligero y modular construido sobre DirectX 11. Está diseñado para ofrecer una base sólida en gráficos y renderizado en Windows, facilitando el aprendizaje y desarrollo de aplicaciones interactivas y juegos. El motor implementa componentes esenciales como la creación de dispositivos Direct3D, gestión del swap chain, render target views, depth stencil views y manejo de texturas, organizados en una arquitectura modular y extensible.
 
-Gestión de Recursos:
-Incluye macros y utilidades (por ejemplo, SAFE_RELEASE, ERROR, y MESSAGE) para la liberación segura de recursos y la depuración.
+## Características
 
-Soporte para MSAA:
-Configuración de anti-aliasing (MSAA) para mejorar la calidad visual del renderizado.
+- **DirectX 11 Rendering Pipeline:**  
+  Implementa las etapas fundamentales de DirectX 11, incluyendo la creación y configuración del dispositivo, el contexto, el swap chain y los recursos de renderizado.
 
-Administración de Ventanas:
-Integración con la API Win32 para la creación y manejo de ventanas, junto con un bucle de mensajes eficiente.
+- **Gestión de Recursos:**  
+  Incluye macros y utilidades (por ejemplo, `SAFE_RELEASE`, `ERROR`, y `MESSAGE`) para la liberación segura de recursos y la depuración.
 
-Arquitectura Modular:
-Organización del código en módulos que abarcan desde la gestión del dispositivo y contextos hasta la creación de vistas de renderizado y manejo de texturas.
+- **Soporte para MSAA:**  
+  Configuración de anti-aliasing (MSAA) para mejorar la calidad visual del renderizado.
 
-Requisitos Previos
-Sistema Operativo: Windows 10 o superior.
-Herramientas: Visual Studio 2019/2022 con soporte para C++.
-SDK: Windows SDK (DirectX está incluido).
-Instalación y Compilación
-Clonar el Repositorio:
+- **Administración de Ventanas:**  
+  Integración con la API Win32 para la creación y manejo de ventanas, junto con un bucle de mensajes eficiente.
 
-bash
-Copy
-git clone https://github.com/69-bits/NaserEngine.git
+- **Arquitectura Modular:**  
+  Organización del código en módulos que abarcan desde la gestión del dispositivo y contextos hasta la creación de vistas de renderizado y manejo de texturas.
+
+## Requisitos Previos
+
+- **Sistema Operativo:** Windows 10 o superior.
+- **Herramientas:** Visual Studio 2019/2022 con soporte para C++.
+- **SDK:** Windows SDK (DirectX está incluido).
+
+## Instalación y Compilación
+
+1. **Clonar el Repositorio:**
+
+   ```bash
+   git clone https://github.com/69-bits/NaserEngine.git
 Abrir la Solución:
 
 Abre el archivo NaserEngine.sln en Visual Studio.
@@ -80,4 +84,3 @@ Fuente clave para la implementación de las técnicas de renderizado.
 
 Comunidad Open Source:
 Agradecimientos a todas las contribuciones y recursos compartidos en línea que han ayudado a dar forma a NaserEngine.
-
