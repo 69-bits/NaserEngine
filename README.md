@@ -31,56 +31,58 @@
 
    ```bash
    git clone https://github.com/69-bits/NaserEngine.git
-Abrir la Solución:
+## Abrir la Solución
 
-Abre el archivo NaserEngine.sln en Visual Studio.
+Abre el archivo `NaserEngine.sln` en Visual Studio.
 
-Compilar el Proyecto:
+## Compilar el Proyecto
 
-Selecciona el modo Debug o Release y compila la solución.
+Selecciona el modo **Debug** o **Release** y compila la solución.
 
-Estructura del Proyecto
-/src:
+## Estructura del Proyecto
+
+### /src:
 Contiene el código fuente del motor.
+- **Device:** Manejo de creación y administración del dispositivo Direct3D.
+- **DeviceContext:** Administración del contexto de renderizado.
+- **SwapChain:** Gestión del swap chain y presentación del backbuffer.
+- **RenderTargetView:** Implementación de las vistas de destino para el renderizado.
+- **DepthStencilView:** Gestión del buffer de profundidad y stencil.
+- **Textura:** Manejo de recursos de textura.
+- **Window:** Creación y administración de ventanas mediante Win32.
 
-Device: Manejo de creación y administración del dispositivo Direct3D.
-DeviceContext: Administración del contexto de renderizado.
-SwapChain: Gestión del swap chain y presentación del backbuffer.
-RenderTargetView: Implementación de las vistas de destino para el renderizado.
-DepthStencilView: Gestión del buffer de profundidad y stencil.
-Textura: Manejo de recursos de textura.
-Window: Creación y administración de ventanas mediante Win32.
-/include:
+### /include:
 Archivos de cabecera que definen la interfaz de los módulos del motor.
 
-/docs:
+### /docs:
 Documentación, recursos y guías de uso del motor.
 
-/libs:
+### /libs:
 (Opcional) Dependencias de terceros o bibliotecas adicionales utilizadas por el motor.
 
-Uso y Extensibilidad
+## Uso y Extensibilidad
+
 NaserEngine está diseñado para ser un punto de partida flexible:
 
-Aprendizaje:
-Ideal para desarrolladores que quieren profundizar en la programación de gráficos con DirectX 11.
+- **Aprendizaje:**  
+  Ideal para desarrolladores que quieren profundizar en la programación de gráficos con DirectX 11.
+- **Extensión:**  
+  Puedes agregar nuevos módulos, sistemas de juego o mejorar la lógica de renderizado según tus necesidades.
+- **Benchmarking y Experimentación:**  
+  Usa el motor como base para experimentar con técnicas modernas de renderizado y optimización gráfica.
 
-Extensión:
-Puedes agregar nuevos módulos, sistemas de juego o mejorar la lógica de renderizado según tus necesidades.
+## Contribuciones
 
-Benchmarking y Experimentación:
-Usa el motor como base para experimentar con técnicas modernas de renderizado y optimización gráfica.
-
-Contribuciones
-¡Se agradecen las contribuciones!
+¡Se agradecen las contribuciones!  
 Si deseas mejorar el motor, reporta problemas o sugiere nuevas características abriendo un issue o enviando un pull request.
 
-Licencia
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+## Licencia
 
-Agradecimientos
-Documentación Oficial de DirectX 11:
-Fuente clave para la implementación de las técnicas de renderizado.
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
-Comunidad Open Source:
-Agradecimientos a todas las contribuciones y recursos compartidos en línea que han ayudado a dar forma a NaserEngine.
+## Agradecimientos
+
+- **Documentación Oficial de DirectX 11:**  
+  Fuente clave para la implementación de las técnicas de renderizado.
+- **Comunidad Open Source:**  
+  Agradecimientos a todas las contribuciones y recursos compartidos en línea que han ayudado a dar forma a NaserEngine.
