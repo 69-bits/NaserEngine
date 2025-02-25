@@ -6,7 +6,9 @@
 #include "Textura.h"
 #include "RenderTargetView.h"
 #include "DepthStencilView.h"
-
+#include "Viewport.h"
+//#include "InputLayout.h"
+#include "ShaderProgram.h"
 // Global Variables
 Window															g_window;
 Device															g_device;
@@ -16,10 +18,13 @@ Textura															g_backBuffer;
 Textura															g_depthStencil;
 RenderTargetView										g_renderTargetView;
 DepthStencilView										g_depthStencilView;
+Viewport														g_viewport;
+//InputLayout													g_inputLayout;
+ShaderProgram												g_shaderProgram;
 
-ID3D11VertexShader* g_pVertexShader = nullptr;
-ID3D11PixelShader* g_pPixelShader = nullptr;
-ID3D11InputLayout* g_pVertexLayout = nullptr;
+//ID3D11VertexShader*									g_pVertexShader = nullptr;
+//ID3D11PixelShader*									g_pPixelShader = nullptr;
+//ID3D11InputLayout*									g_pVertexLayout = nullptr;
 ID3D11Buffer* g_pVertexBuffer = nullptr;
 ID3D11Buffer* g_pIndexBuffer = nullptr;
 ID3D11Buffer* g_pCBNeverChanges = nullptr;
@@ -27,6 +32,7 @@ ID3D11Buffer* g_pCBChangeOnResize = nullptr;
 ID3D11Buffer* g_pCBChangesEveryFrame = nullptr;
 ID3D11ShaderResourceView* g_pTextureRV = nullptr;
 ID3D11SamplerState* g_pSamplerLinear = nullptr;
+
 XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
@@ -35,7 +41,6 @@ XMFLOAT4                            g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
 CBChangesEveryFrame cb;
 CBNeverChanges cbNeverChanges;
 CBChangeOnResize cbChangesOnResize;
-D3D11_VIEWPORT vp;
 unsigned int stride = sizeof(SimpleVertex);
 unsigned int offset = 0;
 //--------------------------------------------------------------------------------------
@@ -84,37 +89,6 @@ wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCm
 }
 
 //--------------------------------------------------------------------------------------
-// Helper for compiling shaders with D3DX11
-//--------------------------------------------------------------------------------------
-HRESULT
-CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut) {
-	HRESULT hr = S_OK;
-
-	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
-#if defined( DEBUG ) || defined( _DEBUG )
-	// Set the D3DCOMPILE_DEBUG flag to embed debug information in the shaders.
-	// Setting this flag improves the shader debugging experience, but still allows 
-	// the shaders to be optimized and to run exactly the way they will run in 
-	// the release configuration of this program.
-	dwShaderFlags |= D3DCOMPILE_DEBUG;
-#endif
-
-	ID3DBlob* pErrorBlob;
-	hr = D3DX11CompileFromFile(szFileName, nullptr, nullptr, szEntryPoint, szShaderModel,
-		dwShaderFlags, 0, nullptr, ppBlobOut, &pErrorBlob, nullptr);
-	if (FAILED(hr)) {
-		if (pErrorBlob != nullptr)
-			OutputDebugStringA((char*)pErrorBlob->GetBufferPointer());
-		if (pErrorBlob) pErrorBlob->Release();
-		return hr;
-	}
-	if (pErrorBlob) pErrorBlob->Release();
-
-	return S_OK;
-}
-
-
-//--------------------------------------------------------------------------------------
 // Create Direct3D device and swap chain
 //--------------------------------------------------------------------------------------
 HRESULT
@@ -157,59 +131,37 @@ InitDevice() {
 
 
 	// Setup the viewport
+	hr = g_viewport.init(g_window);
 
-	vp.Width = (float)g_window.m_width;
-	vp.Height = (float)g_window.m_height;
-	vp.MinDepth = 0.0f;
-	vp.MaxDepth = 1.0f;
-	vp.TopLeftX = 0;
-	vp.TopLeftY = 0;
-
-	// Compile the vertex shader
-	ID3DBlob* pVSBlob = nullptr;
-	hr = CompileShaderFromFile("NaserEngine.fx", "VS", "vs_4_0", &pVSBlob);
-	if (FAILED(hr)) {
-		MessageBox(nullptr,
-			"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", "Error", MB_OK);
-		return hr;
-	}
-
-	// Create the vertex shader
-	hr = g_device.CreateVertexShader(pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), nullptr, &g_pVertexShader);
-	if (FAILED(hr)) {
-		pVSBlob->Release();
-		return hr;
-	}
-
-	// Define the input layout
-	D3D11_INPUT_ELEMENT_DESC
-		layout[] = {
-				{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-				{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-	};
-	unsigned int numElements = ARRAYSIZE(layout);
-
-	// Create the input layout
-	hr = g_device.CreateInputLayout(layout, numElements, pVSBlob->GetBufferPointer(),
-		pVSBlob->GetBufferSize(), &g_pVertexLayout);
-	pVSBlob->Release();
 	if (FAILED(hr))
 		return hr;
 
-	// Set the input layout
+	// Define the input layout
+	std::vector<D3D11_INPUT_ELEMENT_DESC> Layout;
 
-	// Compile the pixel shader
-	ID3DBlob* pPSBlob = nullptr;
-	hr = CompileShaderFromFile("NaserEngine.fx", "PS", "ps_4_0", &pPSBlob);
-	if (FAILED(hr)) {
-		MessageBox(nullptr,
-			"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", "Error", MB_OK);
-		return hr;
-	}
+	D3D11_INPUT_ELEMENT_DESC position;
+	position.SemanticName = "POSITION";
+	position.SemanticIndex = 0;
+	position.Format = DXGI_FORMAT_R32G32B32_FLOAT;
+	position.InputSlot = 0;
+	position.AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT /*0*/;
+	position.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	position.InstanceDataStepRate = 0;
+	Layout.push_back(position);
 
-	// Create the pixel shader
-	hr = g_device.CreatePixelShader(pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), nullptr, &g_pPixelShader);
-	pPSBlob->Release();
+	D3D11_INPUT_ELEMENT_DESC texcoord;
+	texcoord.SemanticName = "TEXCOORD";
+	texcoord.SemanticIndex = 0;
+	texcoord.Format = DXGI_FORMAT_R32G32_FLOAT;
+	texcoord.InputSlot = 0;
+	texcoord.AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT /*12*/;
+	texcoord.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	texcoord.InstanceDataStepRate = 0;
+	Layout.push_back(texcoord);
+
+	//// Create the Shader Program
+	hr = g_shaderProgram.init(g_device, "NaserEngine.fx", Layout);
+
 	if (FAILED(hr))
 		return hr;
 
@@ -367,9 +319,8 @@ CleanupDevice() {
 	if (g_pCBChangesEveryFrame) g_pCBChangesEveryFrame->Release();
 	if (g_pVertexBuffer) g_pVertexBuffer->Release();
 	if (g_pIndexBuffer) g_pIndexBuffer->Release();
-	if (g_pVertexLayout) g_pVertexLayout->Release();
-	if (g_pVertexShader) g_pVertexShader->Release();
-	if (g_pPixelShader) g_pPixelShader->Release();
+
+	g_shaderProgram.destroy();
 
 	g_depthStencil.destroy();
 	g_depthStencilView.destroy();
@@ -454,17 +405,16 @@ WndProc(HWND hWnd, unsigned int message, WPARAM wParam, LPARAM lParam) {
 				ERROR("DepthStencilView", "Resize", "Failed to create new DepthStencilView");
 				return hr;
 			}
-			// Actualizar el viewport
-			//D3D11_VIEWPORT vp;
-			vp.Width = static_cast<float>(g_window.m_width);
-			vp.Height = static_cast<float>(g_window.m_height);
-			vp.MinDepth = 0.0f;
-			vp.MaxDepth = 1.0f;
-			vp.TopLeftX = 0;
-			vp.TopLeftY = 0;
-			g_deviceContext.RSSetViewports(1, &vp);
 
-			// Actualizar la proyeccion
+			// Actualizar el viewport
+			hr = g_viewport.init(g_window);
+
+			if (FAILED(hr)) {
+				ERROR("Viewport", "Resize", "Failed to create new Viewport");
+				return hr;
+			}
+
+			// Actualizar la proyecci�n
 			g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4, g_window.m_width / (float)g_window.m_height, 0.01f, 100.0f);
 			CBChangeOnResize cbChangesOnResize;
 			cbChangesOnResize.mProjection = XMMatrixTranspose(g_Projection);
@@ -487,8 +437,7 @@ WndProc(HWND hWnd, unsigned int message, WPARAM wParam, LPARAM lParam) {
 //--------------------------------------------------------------------------------------
 // Update frame-specific variables
 //--------------------------------------------------------------------------------------
-void 
-update() {
+void update() {
 	// Actualizar tiempo y rotaci�n
 	static float t = 0.0f;
 	if (g_swapchain.m_driverType == D3D_DRIVER_TYPE_REFERENCE) {
@@ -502,7 +451,7 @@ update() {
 		t = (dwTimeCur - dwTimeStart) / 1000.0f;
 	}
 
-	// Actualizar la rotacion del objeto y el color
+	// Actualizar la rotaci�n del objeto y el color
 	g_World = XMMatrixRotationY(t);
 	g_vMeshColor = XMFLOAT4(
 		(sinf(t * 1.0f) + 1.0f) * 0.5f,
@@ -531,8 +480,7 @@ update() {
 //--------------------------------------------------------------------------------------
 // Render a frame
 //--------------------------------------------------------------------------------------
-void 
-Render() {
+void Render() {
 	// Limpiar los buffers
 	const float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
 
@@ -540,24 +488,23 @@ Render() {
 	g_renderTargetView.render(g_deviceContext, g_depthStencilView, 1, ClearColor);
 
 	// Set Viewport
-	g_deviceContext.RSSetViewports(1, &vp);
+	g_viewport.render(g_deviceContext);
 
 	// Set Depth Stencil View
 	g_depthStencilView.render(g_deviceContext);
 
 	// Configurar los buffers y shaders para el pipeline
-	g_deviceContext.IASetInputLayout(g_pVertexLayout);
+	g_shaderProgram.render(g_deviceContext);
+
 	g_deviceContext.IASetVertexBuffers(0, 1, &g_pVertexBuffer, &stride, &offset);
 	g_deviceContext.IASetIndexBuffer(g_pIndexBuffer, DXGI_FORMAT_R16_UINT, 0);
 	g_deviceContext.IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	// Asignar shaders y buffers constantes
-	g_deviceContext.VSSetShader(g_pVertexShader, nullptr, 0);
 	g_deviceContext.VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
 	g_deviceContext.VSSetConstantBuffers(1, 1, &g_pCBChangeOnResize);
 	g_deviceContext.VSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
 
-	g_deviceContext.PSSetShader(g_pPixelShader, nullptr, 0);
 	g_deviceContext.PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
 	g_deviceContext.PSSetShaderResources(0, 1, &g_pTextureRV);
 	g_deviceContext.PSSetSamplers(0, 1, &g_pSamplerLinear);

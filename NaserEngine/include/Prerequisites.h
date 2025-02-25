@@ -70,3 +70,10 @@ ExtensionType {
   TGA = 4,
   UNKNOWN = 5
 };  
+
+// Enumeración de los tipos de sombreadores
+enum 
+ShaderType {
+  VERTEX_SHADER = 0,
+  PIXEL_SHADER = 1
+};
