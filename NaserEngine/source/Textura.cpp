@@ -5,7 +5,7 @@
 #include "DeviceContext.h"
 
 HRESULT 
-Textura::init(Device device, const std::string& textureName, ExtensionType extensionType) {
+Textura::initTexture(Device device, const std::string& textureName, ExtensionType extensionType) {
   if (!device.m_device) {
     ERROR("Texture", "init", "Device is nullptr in texture loading method");
     return E_POINTER;

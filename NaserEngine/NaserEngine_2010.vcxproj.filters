@@ -73,6 +73,9 @@
     <ClInclude Include="include\MeshComponent.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\SamplerState.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Textura.cpp">
@@ -112,6 +115,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\Buffer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SamplerState.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

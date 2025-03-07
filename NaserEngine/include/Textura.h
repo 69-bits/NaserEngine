@@ -20,7 +20,7 @@ public:
    * @return HRESULT Indica el éxito o fallo de la operación.
    */
   HRESULT
-  init(Device device,
+  initTexture(Device device,
       const std::string& fileName,
       ExtensionType extensionType);
   /**
