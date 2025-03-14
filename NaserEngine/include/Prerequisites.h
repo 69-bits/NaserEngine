@@ -85,3 +85,25 @@ enum
   MESH = 2,     ///< Componente de malla.
   MATERIAL = 3  ///< Componente de material.
 };
+
+struct Camera {
+  XMFLOAT3 position; // Posición de la cámara
+  XMFLOAT3 target; // Punto al que mira la cámara
+
+  XMFLOAT3 up; // Vector de dirección de la cámara
+  XMFLOAT3 forward; // Vector de dirección de la cámara
+  XMFLOAT3 right; // Vector de dirección de la cámara
+
+  float yaw; // Ángulo de rotación en el eje Y
+  float pitch; // Ángulo de rotación en el eje X
+
+  Camera() {
+    position = XMFLOAT3(0.0f, 1.6f, -5.0f);
+    target = XMFLOAT3(0.0f, 1.6f, 0.0f);
+    up = XMFLOAT3(0.0f, 1.0f, 0.0f);
+    forward = XMFLOAT3(0.0f, 0.0f, 1.0f);
+    right = XMFLOAT3(1.0f, 0.0f, 0.0f);
+    yaw = 0.0f;
+    pitch = 0.0f;
+  }
+};

@@ -26,6 +26,27 @@ WndProc(HWND hWnd, unsigned int message, WPARAM wParam, LPARAM lParam) {
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+  case WM_KEYDOWN:
+    g_app.keys[wParam] = true;
+    break;
+  case WM_KEYUP:
+    g_app.keys[wParam] = false;
+    break;
+  case WM_LBUTTONDOWN:
+    g_app.mouseLeftDown = true;
+    g_app.lastMouseX = LOWORD(lParam);
+    g_app.lastMouseY = HIWORD(lParam);
+    break;
+  case WM_LBUTTONUP:
+    g_app.mouseLeftDown = false;
+    break;
+  case WM_MOUSEMOVE:
+    if (g_app.mouseLeftDown) {
+      int mouseX = LOWORD(lParam);
+      int mouseY = HIWORD(lParam);
+      g_app.rotateCamera(mouseX, mouseY);
+    }
+    break;
 
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

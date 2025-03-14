@@ -235,6 +235,8 @@ BaseApp::update() {
 		t = (dwTimeCur - dwTimeStart) / 1000.0f;
 	}
 
+  InputActionMap(t);
+
 	// Actualizar la rotaci�n del objeto y el color
 	m_vMeshColor = XMFLOAT4(
 		(sinf(t * 1.0f) + 1.0f) * 0.5f,
@@ -263,12 +265,16 @@ BaseApp::update() {
 
 
 	// Actualizar la matriz de proyecci�n
+  float FOV = XMConvertToRadians(90.0f);
 	m_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4, m_window.m_width / (float)m_window.m_height, 0.01f, 100.0f);
 
 	// Actualizar la vista (si es necesario cambiar din�micamente)
-	cbNeverChanges.mView = XMMatrixTranspose(m_View);
+	/*cbNeverChanges.mView = XMMatrixTranspose(m_View);
 
-	m_neverChange.update(m_deviceContext, 0, nullptr, &cbNeverChanges, 0, 0);
+	m_neverChange.update(m_deviceContext, 0, nullptr, &cbNeverChanges, 0, 0);*/
+
+	updateCamera();
+
 	//g_deviceContext.UpdateSubresource(g_pCBNeverChanges, 0, nullptr, &cbNeverChanges, 0, 0);
 
 	// Actualizar la proyecci�n en el buffer constante
@@ -416,4 +422,91 @@ BaseApp::resize(HWND hwwnd, LPARAM lparam) {
 		cbChangesOnResize.mProjection = XMMatrixTranspose(m_Projection);
     m_changeOnResize.update(m_deviceContext, 0, nullptr, &cbChangesOnResize, 0, 0);
 	}
+}
+
+void 
+BaseApp::InputActionMap(float DeltaTime) {
+	float Sensibility = 0.001f;
+	float moveSpeedCamera = 0.01f;
+	if (keys['W']) {
+    position.y += Sensibility * DeltaTime;
+  }
+	if (keys['S']) {
+		position.y -= Sensibility * DeltaTime;
+	}
+  if (keys['A']) {
+    position.x -= Sensibility * DeltaTime;
+  }
+  if (keys['D']) {
+    position.x += Sensibility * DeltaTime;
+  }
+  if (keys['Q']) {
+    position.z -= Sensibility * DeltaTime;
+  }
+  if (keys['E']) {
+    position.z += Sensibility * DeltaTime;
+  }
+
+	XMVECTOR pos = XMLoadFloat3(&m_camera.position);
+	XMVECTOR forward = XMLoadFloat3(&m_camera.forward);
+	XMVECTOR right = XMLoadFloat3(&m_camera.right);
+
+	if (keys['W']) {
+		pos += forward * moveSpeedCamera;
+	}
+	if (keys['S']) {
+		pos -= forward * moveSpeedCamera;
+	}
+	if (keys['A']) {
+		pos -= right * moveSpeedCamera;
+	}
+	if (keys['D']) {
+		pos += right * moveSpeedCamera;
+	}
+
+
+  XMStoreFloat3(&m_camera.position, pos);
+
+}
+
+void 
+BaseApp::updateCamera() {
+  // Normalizar el vector de dirección
+  XMVECTOR pos = XMLoadFloat3(&m_camera.position);
+  XMVECTOR dir = XMLoadFloat3(&m_camera.forward);
+  XMVECTOR up = XMLoadFloat3(&m_camera.up);
+
+  // Calcular la matriz de vista
+	m_View = XMMatrixLookAtLH(pos, pos + dir, up);
+
+  cbNeverChanges.mView = XMMatrixTranspose(m_View);
+  m_neverChange.update(m_deviceContext, 0, nullptr, &cbNeverChanges, 0, 0);
+}
+
+void 
+BaseApp::rotateCamera(int mouseX, int mouseY) {
+  float offsetX = (mouseX - lastMouseX) * sensivility;
+  float offsetY = (mouseY - lastMouseY) * sensivility;
+  lastMouseX = mouseX;
+  lastMouseY = mouseY;
+
+	m_camera.yaw += offsetX;
+	m_camera.pitch += offsetY;
+
+  //Limitar la inclinación de la cámara
+
+	if (m_camera.pitch > 1.5f) m_camera.pitch = 1.5f;
+	if (m_camera.pitch < -1.5f) m_camera.pitch = -1.5f;
+
+  XMVECTOR forward = XMVectorSet(
+    cosf(m_camera.yaw) * cosf(m_camera.pitch),
+    sinf(m_camera.pitch),
+    sinf(m_camera.yaw) * cosf(m_camera.pitch),
+    0.0f
+  );
+
+  XMVECTOR right = XMVector3Cross(forward, XMLoadFloat3(&m_camera.up));
+
+  XMStoreFloat3(&m_camera.forward, XMVector3Normalize(forward));
+  XMStoreFloat3(&m_camera.right, XMVector3Normalize(right));
 }

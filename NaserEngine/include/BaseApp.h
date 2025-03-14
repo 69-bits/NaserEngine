@@ -63,6 +63,15 @@ public:
   HRESULT
   resize(HWND hwwnd, LPARAM lparam);
 
+  void
+  InputActionMap(float DeltaTime);
+
+  void
+  updateCamera();
+
+  void 
+  rotateCamera(int mouseX, int mouseY);
+
 public:
   Window															m_window;
   Device															m_device;
@@ -82,6 +91,7 @@ public:
   Buffer                              m_changesEveryFrame;
   Textura                             m_modelTexture;
   SamplerState												m_samplerState;
+  Camera                              m_camera;
 
   XMMATRIX                            m_modelMatrix;
   XMMATRIX                            m_View;
@@ -91,6 +101,12 @@ public:
   XMFLOAT3 position;
   XMFLOAT3 rotation;
   XMFLOAT3 scale;
+
+  bool keys[256] = { false };
+  float sensivility = 0.002f;
+  int lastMouseX;
+  int lastMouseY;
+  bool mouseLeftDown = false;
 
   CBChangesEveryFrame cb;
   CBNeverChanges cbNeverChanges;
