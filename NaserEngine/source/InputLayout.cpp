@@ -17,6 +17,7 @@ InputLayout::init(Device& device, std::vector<D3D11_INPUT_ELEMENT_DESC>& layout,
 
   HRESULT hr = S_OK;
 
+  // Crea el layout de entrada
   hr = device.m_device->CreateInputLayout(layout.data(),
     static_cast<unsigned int>(layout.size()),
     VertexShaderData->GetBufferPointer(),
@@ -34,6 +35,8 @@ InputLayout::render(DeviceContext& deviceContext) {
     ERROR("InputLayout", "render", "Input layout is nullptr // Oopsie render layout ╰(*°▽°*)╯");
     return;
   }
+
+  // Establece el layout de entrada
   deviceContext.IASetInputLayout(m_inputLayout);
 }
 

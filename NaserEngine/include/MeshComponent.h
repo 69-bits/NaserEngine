@@ -3,14 +3,14 @@
 #include "DeviceContext.h"
 
 class
-	MeshComponent {
+MeshComponent {
 public:
-	MeshComponent() : m_numVertex(0), m_numIndex(0) {}
-	~MeshComponent() = default;
+  MeshComponent() : m_numVertex(0), m_numIndex(0) {} // Constructor
+  ~MeshComponent() = default; // Destructor
 public:
-	std::string m_name;
-	std::vector<SimpleVertex> m_vertex;
-	std::vector<unsigned int> m_index;
-	int m_numVertex;
-	int m_numIndex;
+  std::string m_name; // Nombre del mesh
+  std::vector<SimpleVertex> m_vertex; // Vector de vértices
+  std::vector<unsigned int> m_index; // Vector de índices
+  int m_numVertex; // Número de vértices
+  int m_numIndex; // Número de índices
 };

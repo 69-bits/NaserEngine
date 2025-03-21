@@ -90,7 +90,8 @@ Buffer::update(DeviceContext& deviceContext,
   deviceContext.UpdateSubresource(m_buffer, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
 }
 
-void Buffer::render(DeviceContext& deviceContext,
+void 
+Buffer::render(DeviceContext& deviceContext,
   unsigned int StartSlot,
   unsigned int NumBuffers,
   DXGI_FORMAT format,
@@ -122,6 +123,7 @@ void Buffer::render(DeviceContext& deviceContext,
   }
 }
 
-void Buffer::destroy() {
+void 
+Buffer::destroy() {
   SAFE_RELEASE(m_buffer);
 }

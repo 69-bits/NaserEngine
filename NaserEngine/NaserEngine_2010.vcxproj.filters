@@ -18,6 +18,15 @@
     <Filter Include="Include">
       <UniqueIdentifier>{b31db3f2-58cb-46b1-b1da-f35f4d62ced7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Imgui">
+      <UniqueIdentifier>{d9bad29e-af88-40f8-a966-f3153c25edaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Imgui\src">
+      <UniqueIdentifier>{032240ab-7884-4d58-8318-ffe92ec7c76b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Imgui\include">
+      <UniqueIdentifier>{9b5034bc-49dc-4d01-bd5b-8e830152ea92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="NaserEngine.fx">
@@ -76,6 +85,33 @@
     <ClInclude Include="include\SamplerState.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\GUI.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParties\imgui-docking\backends\imgui_impl_win32.h">
+      <Filter>Imgui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParties\imgui-docking\backends\imgui_impl_dx11.h">
+      <Filter>Imgui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParties\imgui-docking\imgui.h">
+      <Filter>Imgui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParties\imgui-docking\imconfig.h">
+      <Filter>Imgui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParties\imgui-docking\imgui_internal.h">
+      <Filter>Imgui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParties\imgui-docking\imstb_rectpack.h">
+      <Filter>Imgui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParties\imgui-docking\imstb_textedit.h">
+      <Filter>Imgui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParties\imgui-docking\imstb_truetype.h">
+      <Filter>Imgui\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Textura.cpp">
@@ -118,6 +154,30 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\SamplerState.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParties\imgui-docking\backends\imgui_impl_win32.cpp">
+      <Filter>Imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParties\imgui-docking\backends\imgui_impl_dx11.cpp">
+      <Filter>Imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParties\imgui-docking\imgui_tables.cpp">
+      <Filter>Imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParties\imgui-docking\imgui_widgets.cpp">
+      <Filter>Imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParties\imgui-docking\imgui_demo.cpp">
+      <Filter>Imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParties\imgui-docking\imgui_draw.cpp">
+      <Filter>Imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParties\imgui-docking\imgui.cpp">
+      <Filter>Imgui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GUI.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

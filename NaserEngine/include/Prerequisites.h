@@ -16,6 +16,13 @@
 #include "Resource.h"
 #include "resource.h"
 
+#include <imgui.h>
+#include <imgui_impl_dx11.h>
+#include <imgui_internal.h>
+#include "imgui_impl_win32.h"
+
+
+
 // MACROS
 #define SAFE_RELEASE(x) if(x != nullptr) x->Release(); x = nullptr;
 
@@ -79,14 +86,15 @@ ShaderType {
 };
 
 enum
-  ComponentType {
+ComponentType {
   NONE = 0,     ///< Tipo de componente no especificado.
   TRANSFORM = 1,///< Componente de transformación.
   MESH = 2,     ///< Componente de malla.
   MATERIAL = 3  ///< Componente de material.
 };
 
-struct Camera {
+struct 
+Camera {
   XMFLOAT3 position; // Posición de la cámara
   XMFLOAT3 target; // Punto al que mira la cámara
 
@@ -98,12 +106,12 @@ struct Camera {
   float pitch; // Ángulo de rotación en el eje X
 
   Camera() {
-    position = XMFLOAT3(0.0f, 1.6f, -5.0f);
-    target = XMFLOAT3(0.0f, 1.6f, 0.0f);
-    up = XMFLOAT3(0.0f, 1.0f, 0.0f);
-    forward = XMFLOAT3(0.0f, 0.0f, 1.0f);
-    right = XMFLOAT3(1.0f, 0.0f, 0.0f);
-    yaw = 0.0f;
-    pitch = 0.0f;
+    position = XMFLOAT3(0.0f, 1.6f, -5.0f); // Posición de la cámara
+    target = XMFLOAT3(0.0f, 1.6f, 0.0f); // Punto al que mira la cámara
+    up = XMFLOAT3(0.0f, 1.0f, 0.0f); // Vector de dirección de la cámara
+    forward = XMFLOAT3(0.0f, 0.0f, 1.0f); // Vector de dirección de la cámara
+    right = XMFLOAT3(1.0f, 0.0f, 0.0f); // Vector de dirección de la cámara
+    yaw = 0.0f; // Ángulo de rotación en el eje Y
+    pitch = 0.0f; // Ángulo de rotación en el eje X
   }
 };

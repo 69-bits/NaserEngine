@@ -39,6 +39,7 @@ ShaderProgram::render(DeviceContext& deviceContext) {
 		return;
 	}
 
+  // Establecer el Shader y el Layout de Entrada
 	m_inputLayout.render(deviceContext);
 	deviceContext.VSSetShader(m_VertexShader, nullptr, 0);
 	deviceContext.PSSetShader(m_PixelShader, nullptr, 0);
@@ -60,6 +61,7 @@ ShaderProgram::CreateInputLayout(Device& device, std::vector<D3D11_INPUT_ELEMENT
 		return E_POINTER;
 	}
 
+  // Crear el Input Layout
 	HRESULT hr = m_inputLayout.init(device, Layout, m_vertexShaderData);
 	SAFE_RELEASE(m_vertexShaderData);
 
@@ -87,7 +89,7 @@ ShaderProgram::CreateShader(Device& device, ShaderType type) {
 		return hr;
 	}
 
-	// Crear el shader
+  // Crear el Shader de acuerdo al tipo
 	if (type == PIXEL_SHADER) {
 		hr = device.CreatePixelShader(shaderData->GetBufferPointer(),
 			shaderData->GetBufferSize(),
@@ -120,7 +122,8 @@ ShaderProgram::CreateShader(Device& device, ShaderType type) {
 	return S_OK;
 }
 
-HRESULT ShaderProgram::CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
+HRESULT 
+ShaderProgram::CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
 {
 	HRESULT hr = S_OK;
 

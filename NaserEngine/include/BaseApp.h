@@ -12,20 +12,20 @@
 #include "Buffer.h"
 #include "MeshComponent.h"
 #include "SamplerState.h"
+#include "GUI.h"
 
 class
-BaseApp {
+  BaseApp {
 public:
-	BaseApp() = default;
-	~BaseApp() = default;
+  BaseApp() = default;
+  ~BaseApp() = default;
 
   /**
    * @brief Inicializa la aplicación.
-   *
    * @return HRESULT Indica el éxito o fallo de la operación.
    */
-	HRESULT
-	init();
+  HRESULT
+  init();
 
   void
   CleanupDevice();
@@ -33,14 +33,14 @@ public:
   /**
    * @brief Actualiza el estado de la aplicación.
    */
-	void
-	update();
+  void
+  update();
 
   /**
    * @brief Renderiza el contenido de la aplicación.
    */
-	void
-	render();
+  void
+  render();
 
   /**
    * @brief Ejecuta la aplicación.
@@ -53,23 +53,59 @@ public:
    * @return int Indica el éxito o fallo de la operación.
    */
 
-	int
-	run(HINSTANCE hInstance,
-			HINSTANCE hPrevInstance,
-			LPWSTR lpCmdLine,
-			int nCmdShow,
-			WNDPROC wndproc);
+  int
+  run(HINSTANCE hInstance,
+      HINSTANCE hPrevInstance,
+      LPWSTR lpCmdLine,
+      int nCmdShow,
+      WNDPROC wndproc);
 
+  /**
+    * @brief Procesa los mensajes de la aplicación.
+    *
+    * @param hWnd Ventana de la aplicación.
+    * @param message Mensaje de la aplicación.
+    * @param wParam Primer parámetro del mensaje.
+    * @param lParam Segundo parámetro del mensaje.
+    * @return LRESULT Resultado del mensaje.
+    */
   HRESULT
   resize(HWND hwwnd, LPARAM lparam);
 
+  /**
+    * @brief Procesa los mensajes de la aplicación.
+    *
+    * @param hWnd Ventana de la aplicación.
+    * @param message Mensaje de la aplicación.
+    * @param wParam Primer parámetro del mensaje.
+    * @param lParam Segundo parámetro del mensaje.
+    * @return LRESULT Resultado del mensaje.
+    */
   void
   InputActionMap(float DeltaTime);
 
+  /**
+    * @brief Procesa los mensajes de la aplicación.
+    *
+    * @param hWnd Ventana de la aplicación.
+    * @param message Mensaje de la aplicación.
+    * @param wParam Primer parámetro del mensaje.
+    * @param lParam Segundo parámetro del mensaje.
+    * @return LRESULT Resultado del mensaje.
+    */
   void
   updateCamera();
 
-  void 
+  /**
+    * @brief Procesa los mensajes de la aplicación.
+    * 
+    * @param hWnd Ventana de la aplicación.
+    * @param message Mensaje de la aplicación.
+    * @param wParam Primer parámetro del mensaje.
+    * @param lParam Segundo parámetro del mensaje.
+    * @return LRESULT Resultado del mensaje.
+    */
+  void
   rotateCamera(int mouseX, int mouseY);
 
 public:
@@ -92,6 +128,7 @@ public:
   Textura                             m_modelTexture;
   SamplerState												m_samplerState;
   Camera                              m_camera;
+  GUI                                 m_gui;
 
   XMMATRIX                            m_modelMatrix;
   XMMATRIX                            m_View;

@@ -199,7 +199,7 @@ BaseApp::init() {
 	XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 	m_View = XMMatrixLookAtLH(Eye, At, Up);
 
-
+  m_gui.Init(m_window.m_hWnd, m_device.m_device, m_deviceContext.m_deviceContext);
 
 	return S_OK;
 }
@@ -217,11 +217,27 @@ BaseApp::CleanupDevice() {
 	m_deviceContext.destroy();
 	m_device.destroy();
 	m_samplerState.destroy();
+  m_gui.destroy();
 }
 
 
 void
 BaseApp::update() {
+
+  m_gui.update();
+
+	ImGui::SetNextWindowSize(ImVec2(400.0f, 300.0f)); // Tamaño inicial de la ventana (ancho, alto)
+	ImGui::Begin("Mi Ventana");
+	ImGui::Text("Holaaaaaa");
+	ImGui::End();
+
+	ImGui::SetNextWindowSize(ImVec2(400.0f, 300.0f)); // Tamaño inicial de la ventana (ancho, alto)
+	ImGui::Begin("Mi Ventana 2");
+	ImGui::Text("Adiosssss");
+	ImGui::End();
+
+	m_gui.transformWindow();
+
 	// Actualizar tiempo y rotaci�n
 	static float t = 0.0f;
 	if (m_swapchain.m_driverType == D3D_DRIVER_TYPE_REFERENCE) {
@@ -245,7 +261,6 @@ BaseApp::update() {
 		1.0f
 	);
 
-  rotation.y = t;
 
   XMMATRIX scaleMatrix = XMMatrixScaling(scale.x, scale.y, scale.z);
 	XMMATRIX rotationMatrix = XMMatrixRotationRollPitchYaw(rotation.x, rotation.y, rotation.z);
@@ -327,9 +342,11 @@ BaseApp::render() {
 
 	// Dibujar
 	m_deviceContext.DrawIndexed(36, 0, 0);
-
+	m_gui.render();
 	// Presentar el frame en pantalla
 	m_swapchain.present();
+
+  
 }
 
 
@@ -379,7 +396,6 @@ BaseApp::resize(HWND hwwnd, LPARAM lparam) {
 		m_depthStencil.destroy();
 		m_depthStencilView.destroy();
 		m_backBuffer.destroy();
-
 		m_window.m_width = LOWORD(lparam);
 		m_window.m_height = HIWORD(lparam);
 
