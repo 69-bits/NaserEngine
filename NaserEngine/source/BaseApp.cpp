@@ -74,6 +74,9 @@ BaseApp::init() {
 	if (FAILED(hr))
 		return hr;
 
+	// Load Model
+	m_modelLoader.LoadFBX_model("Models/Naser.fbx");
+
 	// Create vertex buffer
 	SimpleVertex
 		vertices[] = {

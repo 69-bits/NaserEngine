@@ -13,6 +13,7 @@
 #include "MeshComponent.h"
 #include "SamplerState.h"
 #include "GUI.h"
+#include "ModelLoader.h"
 
 class
   BaseApp {
@@ -129,6 +130,8 @@ public:
   SamplerState												m_samplerState;
   Camera                              m_camera;
   GUI                                 m_gui;
+  ModelLoader                         m_modelLoader;
+
 
   XMMATRIX                            m_modelMatrix;
   XMMATRIX                            m_View;
