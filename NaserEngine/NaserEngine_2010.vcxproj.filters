@@ -112,6 +112,9 @@
     <ClInclude Include="ThirdParties\imgui-docking\imstb_truetype.h">
       <Filter>Imgui\include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ModelLoader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Textura.cpp">
@@ -178,6 +181,9 @@
       <Filter>Imgui\src</Filter>
     </ClCompile>
     <ClCompile Include="source\GUI.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ModelLoader.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
