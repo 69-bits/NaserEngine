@@ -58,25 +58,25 @@ GUI::transformWindow() {
   ImGui::BeginChild("Position Sliders", ImVec2(0, 100), true);
   ImGui::Text("Position");  
   ImGui::Separator();
-  ImGui::SliderFloat("X", &g_app.position.x, -10.0f, 10.0f);
-  ImGui::SliderFloat("Y", &g_app.position.y, -10.0f, 10.0f);
-  ImGui::DragFloat("Z", &g_app.position.z, -10.0f, 10.0f);
+  ImGui::SliderFloat("X", &g_app.m_NaserPosition.x, -10.0f, 10.0f);
+  ImGui::SliderFloat("Y", &g_app.m_NaserPosition.y, -10.0f, 10.0f);
+  ImGui::DragFloat("Z", &g_app.m_NaserPosition.z, -10.0f, 10.0f);
   ImGui::EndChild();
 
   ImGui::BeginChild("Rotation Sliders", ImVec2(0, 100), true);
   ImGui::Text("Rotation");
   ImGui::Separator();
-  ImGui::SliderFloat("X", &g_app.rotation.x, -10.0f, 10.0f);
-  ImGui::SliderFloat("Y", &g_app.rotation.y, -10.0f, 10.0f);
-  ImGui::SliderFloat("Z", &g_app.rotation.z, -10.0f, 10.0f);
+  ImGui::SliderFloat("X", &g_app.m_NaserRotation.x, -10.0f, 10.0f);
+  ImGui::SliderFloat("Y", &g_app.m_NaserRotation.y, -10.0f, 10.0f);
+  ImGui::SliderFloat("Z", &g_app.m_NaserRotation.z, -10.0f, 10.0f);
   ImGui::EndChild();
 
   ImGui::BeginChild("Scale Sliders", ImVec2(0, 100), true);
   ImGui::Text("Scale");
   ImGui::Separator();
-  ImGui::SliderFloat("X", &g_app.scale.x, 0.1f, 10.0f);
-  ImGui::SliderFloat("Y", &g_app.scale.y, 0.1f, 10.0f);
-  ImGui::SliderFloat("Z", &g_app.scale.z, 0.1f, 10.0f);
+  ImGui::SliderFloat("X", &g_app.m_NaserScale.x, 0.1f, 10.0f);
+  ImGui::SliderFloat("Y", &g_app.m_NaserScale.y, 0.1f, 10.0f);
+  ImGui::SliderFloat("Z", &g_app.m_NaserScale.z, 0.1f, 10.0f);
   ImGui::EndChild();
 
 

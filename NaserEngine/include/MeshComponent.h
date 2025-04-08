@@ -1,12 +1,21 @@
 #pragma once
 #include "Prerequisites.h"
 #include "DeviceContext.h"
+#include "ComponentType.h"
 
 class
-MeshComponent {
+MeshComponent : public Component{
 public:
-  MeshComponent() : m_numVertex(0), m_numIndex(0) {} // Constructor
+  MeshComponent() : m_numVertex(0), m_numIndex(0), Component(ComponentType::MESH) {} // Constructor
+  virtual
   ~MeshComponent() = default; // Destructor
+
+  void
+  update(float deltaTime) override {}
+
+  void
+  render(DeviceContext& deviceContext) override {}
+
 public:
   std::string m_name; // Nombre del mesh
   std::vector<SimpleVertex> m_vertex; // Vector de vértices

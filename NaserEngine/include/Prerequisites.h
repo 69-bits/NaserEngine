@@ -21,6 +21,11 @@
 #include <imgui_internal.h>
 #include "imgui_impl_win32.h"
 
+#include "Memory/TSharedPointer.h"
+#include "Memory/TWeakPointer.h"
+#include "Memory/TStaticPtr.h"
+#include "Memory/TWeakPointer.h"
+
 
 
 // MACROS

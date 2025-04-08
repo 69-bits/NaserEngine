@@ -1,6 +1,7 @@
 #pragma once
 #include "Prerequisites.h"
 #include "Textura.h"
+#include "Transform.h"
 
 class
 GUI {
@@ -50,5 +51,5 @@ public:
 
 private:
   Textura texture; // Textura
-
+  Transform transform; // Transformación
 };

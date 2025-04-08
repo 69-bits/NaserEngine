@@ -426,13 +426,23 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Actor.h" />
     <ClInclude Include="include\BaseApp.h" />
     <ClInclude Include="include\Buffer.h" />
+    <ClInclude Include="include\ComponentType.h" />
     <ClInclude Include="include\DepthStencilView.h" />
     <ClInclude Include="include\Device.h" />
     <ClInclude Include="include\DeviceContext.h" />
+    <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\GUI.h" />
     <ClInclude Include="include\InputLayout.h" />
+    <ClInclude Include="include\Matrix\Matrix2x2.h" />
+    <ClInclude Include="include\Matrix\Matrix3x3.h" />
+    <ClInclude Include="include\Matrix\Matrix4x4.h" />
+    <ClInclude Include="include\Memory\TSharedPointer.h" />
+    <ClInclude Include="include\Memory\TStaticPtr.h" />
+    <ClInclude Include="include\Memory\TUniquePtr.h" />
+    <ClInclude Include="include\Memory\TWeakPointer.h" />
     <ClInclude Include="include\MeshComponent.h" />
     <ClInclude Include="include\ModelLoader.h" />
     <ClInclude Include="include\Prerequisites.h" />
@@ -441,8 +451,17 @@
     <ClInclude Include="include\SamplerState.h" />
     <ClInclude Include="include\ShaderProgram.h" />
     <ClInclude Include="include\stb_image.h" />
+    <ClInclude Include="include\Structures\TArray.h" />
+    <ClInclude Include="include\Structures\TMap.h" />
+    <ClInclude Include="include\Structures\TPair.h" />
+    <ClInclude Include="include\Structures\TSet.h" />
     <ClInclude Include="include\Swapchain.h" />
     <ClInclude Include="include\Textura.h" />
+    <ClInclude Include="include\Transform.h" />
+    <ClInclude Include="include\Vectors\Quaternion.h" />
+    <ClInclude Include="include\Vectors\Vector2.h" />
+    <ClInclude Include="include\Vectors\Vector3.h" />
+    <ClInclude Include="include\Vectors\Vector4.h" />
     <ClInclude Include="include\Viewport.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="ThirdParties\imgui-docking\backends\imgui_impl_dx11.h" />
@@ -459,6 +478,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NaserEngine.cpp" />
+    <ClCompile Include="source\Actor.cpp" />
     <ClCompile Include="source\BaseApp.cpp" />
     <ClCompile Include="source\Buffer.cpp" />
     <ClCompile Include="source\DepthStencilView.cpp" />
@@ -472,6 +492,7 @@
     <ClCompile Include="source\ShaderProgram.cpp" />
     <ClCompile Include="source\Swapchain.cpp" />
     <ClCompile Include="source\Textura.cpp" />
+    <ClCompile Include="source\Transform.cpp" />
     <ClCompile Include="source\Viewport.cpp" />
     <ClCompile Include="source\Window.cpp" />
     <ClCompile Include="ThirdParties\imgui-docking\backends\imgui_impl_dx11.cpp" />

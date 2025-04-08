@@ -14,6 +14,7 @@
 #include "SamplerState.h"
 #include "GUI.h"
 #include "ModelLoader.h"
+#include "Actor.h"
 
 class
   BaseApp {
@@ -120,27 +121,36 @@ public:
   DepthStencilView										m_depthStencilView;
   Viewport														m_viewport;
   ShaderProgram												m_shaderProgram;
-  Buffer                              m_vertexBuffer;
-  Buffer                              m_indexBuffer;
-  MeshComponent                       m_mesh;
+  //Buffer                              m_vertexBuffer;
+  //Buffer                              m_indexBuffer;
+  //MeshComponent                       m_mesh;
   Buffer                              m_neverChange;
   Buffer                              m_changeOnResize;
   Buffer                              m_changesEveryFrame;
-  Textura                             m_modelTexture;
-  SamplerState												m_samplerState;
+  //Textura                             m_modelTexture;
+  //SamplerState												m_samplerState;
   Camera                              m_camera;
   GUI                                 m_gui;
   ModelLoader                         m_modelLoader;
 
 
-  XMMATRIX                            m_modelMatrix;
+  //XMMATRIX                            m_modelMatrix;
   XMMATRIX                            m_View;
   XMMATRIX                            m_Projection;
   XMFLOAT4                            m_vMeshColor;
 
-  XMFLOAT3 position;
-  XMFLOAT3 rotation;
-  XMFLOAT3 scale;
+  //XMFLOAT3 position;
+  //XMFLOAT3 rotation;
+  //XMFLOAT3 scale;
+
+  //Naser actor
+  ModelLoader m_Naser;
+  EngineUtilities::TSharedPointer<Actor> Naser;
+  std::vector<Textura> m_NaserTextures;
+  Textura m_default;
+  EngineUtilities::Vector3 m_NaserPosition = EngineUtilities::Vector3(10.0f, -2.0f, 2.0f);
+  EngineUtilities::Vector3 m_NaserRotation = EngineUtilities::Vector3(XM_PI / 10.0f, 0.0f, XM_PI / -15.0f);
+  EngineUtilities::Vector3 m_NaserScale = EngineUtilities::Vector3(0.03f, 0.03f, 0.03f);
 
   bool keys[256] = { false };
   float sensivility = 0.002f;
@@ -148,7 +158,7 @@ public:
   int lastMouseY;
   bool mouseLeftDown = false;
 
-  CBChangesEveryFrame cb;
+  //CBChangesEveryFrame cb;
   CBNeverChanges cbNeverChanges;
   CBChangeOnResize cbChangesOnResize;
   unsigned int stride = sizeof(SimpleVertex);

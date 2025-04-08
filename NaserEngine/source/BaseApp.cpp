@@ -74,67 +74,67 @@ BaseApp::init() {
 	if (FAILED(hr))
 		return hr;
 
-	// Load Model
-	m_modelLoader.LoadFBX_model("Models/Naser.fbx");
+	//// Load Model
+	//m_modelLoader.LoadFBX_model("Models/Naser.fbx");
 
-	// Create vertex buffer
-	SimpleVertex
-		vertices[] = {
-				{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-				{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
+	//// Create vertex buffer
+	//SimpleVertex
+	//	vertices[] = {
+	//			{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
+	//			{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
 
-				{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-				{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
+	//			{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
+	//			{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
 
-				{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
-				{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-				{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
-				{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
+	//			{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
+	//			{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
+	//			{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
+	//			{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
 
-				{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
-				{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
+	//			{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
+	//			{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
 
-				{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
-				{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 1.0f) },
+	//			{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
+	//			{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 1.0f) },
 
-				{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(1.0f, 0.0f) },
-				{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-				{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
-	};
+	//			{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(1.0f, 0.0f) },
+	//			{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
+	//			{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
+	//};
 
-		// Create vertex buffer
-	WORD
-		indices[] = {
-				3,1,0,
-				2,1,3,
+	//// Create vertex buffer
+	//WORD
+	//	indices[] = {
+	//			3,1,0,
+	//			2,1,3,
 
-				6,4,5,
-				7,4,6,
+	//			6,4,5,
+	//			7,4,6,
 
-				11,9,8,
-				10,9,11,
+	//			11,9,8,
+	//			10,9,11,
 
-				14,12,13,
-				15,12,14,
+	//			14,12,13,
+	//			15,12,14,
 
-				19,17,16,
-				18,17,19,
+	//			19,17,16,
+	//			18,17,19,
 
-				22,20,21,
-				23,20,22
-	};
+	//			22,20,21,
+	//			23,20,22
+	//};
 
 
-	for (SimpleVertex vertex : vertices) {
+	/*for (SimpleVertex vertex : vertices) {
 		m_mesh.m_vertex.push_back(vertex);
 	}
 
@@ -155,7 +155,7 @@ BaseApp::init() {
 	if (FAILED(hr)) {
 		ERROR("IndexBuffer", "Resize", "Failed to create new Buffer");
 		return hr;
-	}
+	}*/
 
 	// Create the constant buffers
 
@@ -171,7 +171,7 @@ BaseApp::init() {
 		return hr;
 	}
 
-	hr = m_changesEveryFrame.init(m_device, sizeof(CBChangesEveryFrame));
+	/*hr = m_changesEveryFrame.init(m_device, sizeof(CBChangesEveryFrame));
 	if (FAILED(hr)) {
 		ERROR("Buffer", "init", "Failed to create new Buffer");
 		return hr;
@@ -181,28 +181,52 @@ BaseApp::init() {
 	if (FAILED(hr)) {
 		ERROR("Texture", "initTexture", "Failed to create new Texture");
 		return hr;
-	}
+	}*/
 
 	// Create the sample state
 
-	hr = m_samplerState.init(m_device);
+	/*/hr = m_samplerState.init(m_device);
 	if (FAILED(hr))
-		return hr;
+		return hr;*/
 
-	// Initialize the world matrices
-	m_modelMatrix = XMMatrixIdentity();
+		//// Initialize the world matrices
+		//m_modelMatrix = XMMatrixIdentity();
 
-  scale.x = 1.0f;
-  scale.y = 1.0f;
-  scale.z = 1.0f;
+	 // scale.x = 1.0f;
+	 // scale.y = 1.0f;
+	 // scale.z = 1.0f;
 
-	// Initialize the view matrix
+		// Initialize the view matrix
 	XMVECTOR Eye = XMVectorSet(0.0f, 3.0f, -6.0f, 0.0f);
 	XMVECTOR At = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 	XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 	m_View = XMMatrixLookAtLH(Eye, At, Up);
 
-  m_gui.Init(m_window.m_hWnd, m_device.m_device, m_deviceContext.m_deviceContext);
+	m_gui.Init(m_window.m_hWnd, m_device.m_device, m_deviceContext.m_deviceContext);
+
+	m_default.initTexture(m_device, "Models/Naser.fbm/mat_naser.png", ExtensionType::PNG);
+	//m_NaserTextures.push_back(mat_naser);
+	m_NaserTextures.push_back(m_default);
+
+
+	m_Naser.LoadFBX_model("Models/Naser.fbx");
+	Naser = EngineUtilities::MakeShared<Actor>(m_device);
+
+	if (!Naser.isNull()) {
+		// Init Actor Transform
+		Naser->getComponent<Transform>()->setTransform(m_NaserPosition, m_NaserRotation, m_NaserScale);
+
+		// Init Actor Mesh
+		Naser->setMesh(m_device, m_Naser.m_meshes);
+		// Init Actor Textures
+		Naser->setTextures(m_NaserTextures, m_device);
+
+		std::string msg = Naser->getName() + " - Actor accessed successfully.";
+		MESSAGE("Actor", "Actor", msg.c_str());
+	}
+	else {
+		MESSAGE("Actor", "Actor", "Actor resource not found.");
+	}
 
 	return S_OK;
 }
@@ -219,7 +243,8 @@ BaseApp::CleanupDevice() {
 	m_swapchain.destroy();
 	m_deviceContext.destroy();
 	m_device.destroy();
-	m_samplerState.destroy();
+	Naser->destroy();
+	//m_samplerState.destroy();
   m_gui.destroy();
 }
 
@@ -257,28 +282,28 @@ BaseApp::update() {
   InputActionMap(t);
 
 	// Actualizar la rotaci�n del objeto y el color
-	m_vMeshColor = XMFLOAT4(
+	/*m_vMeshColor = XMFLOAT4(
 		(sinf(t * 1.0f) + 1.0f) * 0.5f,
 		(cosf(t * 3.0f) + 1.0f) * 0.5f,
 		(sinf(t * 5.0f) + 1.0f) * 0.5f,
 		1.0f
-	);
+	);*/
 
 
-  XMMATRIX scaleMatrix = XMMatrixScaling(scale.x, scale.y, scale.z);
-	XMMATRIX rotationMatrix = XMMatrixRotationRollPitchYaw(rotation.x, rotation.y, rotation.z);
-  XMMATRIX translationMatrix = XMMatrixTranslation(position.x, position.y, position.z);
+ // XMMATRIX scaleMatrix = XMMatrixScaling(scale.x, scale.y, scale.z);
+	//XMMATRIX rotationMatrix = XMMatrixRotationRollPitchYaw(rotation.x, rotation.y, rotation.z);
+ // XMMATRIX translationMatrix = XMMatrixTranslation(position.x, position.y, position.z);
 
-  // Componer la matriz final en el orden: Escala * Rotacion * Traslacion
-  m_modelMatrix = scaleMatrix * rotationMatrix * translationMatrix;
+ // // Componer la matriz final en el orden: Escala * Rotacion * Traslacion
+ // m_modelMatrix = scaleMatrix * rotationMatrix * translationMatrix;
 
 
-	// Actualizar el buffer constante del frame
-	cb.mWorld = XMMatrixTranspose(m_modelMatrix);
-	cb.vMeshColor = m_vMeshColor;
+	//// Actualizar el buffer constante del frame
+	//cb.mWorld = XMMatrixTranspose(m_modelMatrix);
+	//cb.vMeshColor = m_vMeshColor;
 	//g_deviceContext.UpdateSubresource(g_pCBChangesEveryFrame, 0, nullptr, &cb, 0, 0);
 
-	m_changesEveryFrame.update(m_deviceContext, 0, nullptr, &cb, 0, 0);
+	//m_changesEveryFrame.update(m_deviceContext, 0, nullptr, &cb, 0, 0);
 
 
 
@@ -298,6 +323,9 @@ BaseApp::update() {
 	// Actualizar la proyecci�n en el buffer constante
 	cbChangesOnResize.mProjection = XMMatrixTranspose(m_Projection);
 	m_changeOnResize.update(m_deviceContext, 0, nullptr, &cbChangesOnResize, 0, 0);
+
+  Naser->update(0, m_deviceContext);
+
 	//g_deviceContext.UpdateSubresource(g_pCBChangeOnResize, 0, nullptr, &cbChangesOnResize, 0, 0);
 }
 
@@ -321,10 +349,12 @@ BaseApp::render() {
 	/*g_deviceContext.IASetVertexBuffers(0, 1, &g_pVertexBuffer, &stride, &offset);
 	g_deviceContext.IASetIndexBuffer(g_pIndexBuffer, DXGI_FORMAT_R16_UINT, 0);*/
 
-	m_vertexBuffer.render(m_deviceContext, 0, 1);
-	m_indexBuffer.render(m_deviceContext, 0, 1, DXGI_FORMAT_R32_UINT);
+	/*m_vertexBuffer.render(m_deviceContext, 0, 1);
+	m_indexBuffer.render(m_deviceContext, 0, 1, DXGI_FORMAT_R32_UINT);*/
 
-	m_deviceContext.IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//m_deviceContext.IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+  
 
 	// Asignar shaders y buffers constantes
 	/*g_deviceContext.VSSetConstantBuffers(0, 1, &g_pCBNeverChanges);
@@ -333,18 +363,18 @@ BaseApp::render() {
 
 	m_neverChange.render(m_deviceContext, 0, 1);
 	m_changeOnResize.render(m_deviceContext, 1, 1);
-	m_changesEveryFrame.render(m_deviceContext, 2, 1);
-
-	m_modelTexture.render(m_deviceContext, 0, 1);
+	//m_changesEveryFrame.render(m_deviceContext, 2, 1);
+Naser->render(m_deviceContext);
+	//m_modelTexture.render(m_deviceContext, 0, 1);
 
 	//g_deviceContext.PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
-	m_changesEveryFrame.render(m_deviceContext, 2, 1, DXGI_FORMAT_UNKNOWN, true);
+	//m_changesEveryFrame.render(m_deviceContext, 2, 1, DXGI_FORMAT_UNKNOWN, true);
 	//g_deviceContext.PSSetShaderResources(0, 1, &g_pTextureRV);
 	//g_deviceContext.PSSetSamplers(0, 1, &g_samplerState.m_samplerState);
-  m_samplerState.render(m_deviceContext, 0, 1);
+  //m_samplerState.render(m_deviceContext, 0, 1);
 
 	// Dibujar
-	m_deviceContext.DrawIndexed(36, 0, 0);
+	//m_deviceContext.DrawIndexed(36, 0, 0);
 	m_gui.render();
 	// Presentar el frame en pantalla
 	m_swapchain.present();
@@ -447,7 +477,7 @@ void
 BaseApp::InputActionMap(float DeltaTime) {
 	float Sensibility = 0.001f;
 	float moveSpeedCamera = 0.01f;
-	if (keys['W']) {
+	/*if (keys['W']) {
     position.y += Sensibility * DeltaTime;
   }
 	if (keys['S']) {
@@ -464,7 +494,7 @@ BaseApp::InputActionMap(float DeltaTime) {
   }
   if (keys['E']) {
     position.z += Sensibility * DeltaTime;
-  }
+  }*/
 
 	XMVECTOR pos = XMLoadFloat3(&m_camera.position);
 	XMVECTOR forward = XMLoadFloat3(&m_camera.forward);
