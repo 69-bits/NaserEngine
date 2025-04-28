@@ -11,7 +11,7 @@ public:
    * @brief Destructor virtual.
    */
   virtual
-    ~Entity() = default;
+  ~Entity() = default;
 
   /**
    * @brief Método virtual puro para actualizar la entidad.
@@ -19,14 +19,14 @@ public:
    * @param deviceContext Contexto del dispositivo para operaciones gráficas.
    */
   virtual void
-    update(float deltaTime, DeviceContext& deviceContext) = 0;
+  update(float deltaTime, DeviceContext& deviceContext) = 0;
 
   /**
    * @brief Método virtual puro para renderizar la entidad.
    * @param deviceContext Contexto del dispositivo para operaciones gráficas.
    */
   virtual void
-    render(DeviceContext& deviceContext) = 0;
+  render(DeviceContext& deviceContext) = 0;
 
   /**
    * @brief Agrega un componente a la entidad.

@@ -175,11 +175,23 @@
     <ClInclude Include="include\Vectors\Vector4.h">
       <Filter>Include\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="include\Actor.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Transform.h">
       <Filter>Include\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OBJ_Loader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\Actor.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\ComponentType.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\Entity.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\Transform.h">
+      <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

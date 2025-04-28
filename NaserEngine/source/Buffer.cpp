@@ -94,8 +94,8 @@ void
 Buffer::render(DeviceContext& deviceContext,
   unsigned int StartSlot,
   unsigned int NumBuffers,
-  DXGI_FORMAT format,
-  bool setPixelShader) {
+  bool setPixelShader,
+  DXGI_FORMAT format) {
   if (!m_buffer) {
     ERROR("Buffer", "render", "Buffer is nullptr");
     return;

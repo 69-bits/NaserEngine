@@ -1,7 +1,7 @@
 #pragma once
 #include "Prerequisites.h"
 #include "DeviceContext.h"
-#include "ComponentType.h"
+#include "ECS/ComponentType.h"
 
 class
 MeshComponent : public Component{
@@ -10,9 +10,11 @@ public:
   virtual
   ~MeshComponent() = default; // Destructor
 
+  // Método para inicializar el componente
   void
   update(float deltaTime) override {}
 
+  // Método para renderizar el componente
   void
   render(DeviceContext& deviceContext) override {}
 

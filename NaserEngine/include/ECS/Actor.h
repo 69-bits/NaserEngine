@@ -27,13 +27,18 @@ public:
     setMesh(Device& device, std::vector<MeshComponent> meshes);
 
   void
-    setTextures(std::vector<Textura> texturas, Device device);
+    setTextures(std::vector<Textura> texturas);
 
   void
-    destroy();
+  destroy();
 
   std::string
-    getName() const { return m_name; }
+  getName() const { return m_name; }
+
+  void
+  setName(std::string name) {
+    m_name = name;
+  }
 
   template <typename T>
   EngineUtilities::TSharedPointer<T>

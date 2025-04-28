@@ -1,4 +1,4 @@
-#include "Actor.h"
+#include "ECS/Actor.h"
 #include "MeshComponent.h"
 #include "Device.h"
 
@@ -39,17 +39,17 @@ Actor::render(DeviceContext& deviceContext) {
 
   for (unsigned int i = 0; i < m_meshes.size(); i++) {
     m_vertexBuffers[i].render(deviceContext, 0, 1);
-    m_indexBuffers[i].render(deviceContext, 0, 1, DXGI_FORMAT_R32_UINT, false);
+    m_indexBuffers[i].render(deviceContext, 0, 1, false, DXGI_FORMAT_R32_UINT);
 
     if (m_texturas.size() > 0) {
-      if (i <= m_texturas.size() - 1)
+      if (i <= m_texturas.size())
       {
         m_texturas[i].render(deviceContext, 0, 1);
       }
     }
 
     // Renderizar el mesh
-    m_modelBuffer.render(deviceContext, 2, 1);
+    m_modelBuffer.render(deviceContext, 2, 1, true);
 
     deviceContext.IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     deviceContext.DrawIndexed(m_meshes[i].m_numIndex, 0, 0);
@@ -85,7 +85,7 @@ Actor::setMesh(Device& device, std::vector<MeshComponent> meshes) {
   }
 }
 
-void Actor::setTextures(std::vector<Textura> texturas, Device device) {
+void Actor::setTextures(std::vector<Textura> texturas) {
   m_texturas = texturas;
 }
 

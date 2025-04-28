@@ -14,7 +14,7 @@
 #include "SamplerState.h"
 #include "GUI.h"
 #include "ModelLoader.h"
-#include "Actor.h"
+#include "ECS/Actor.h"
 
 class
   BaseApp {
@@ -27,22 +27,22 @@ public:
    * @return HRESULT Indica el éxito o fallo de la operación.
    */
   HRESULT
-  init();
+    init();
 
   void
-  CleanupDevice();
+    CleanupDevice();
 
   /**
    * @brief Actualiza el estado de la aplicación.
    */
   void
-  update();
+    update();
 
   /**
    * @brief Renderiza el contenido de la aplicación.
    */
   void
-  render();
+    render();
 
   /**
    * @brief Ejecuta la aplicación.
@@ -56,7 +56,7 @@ public:
    */
 
   int
-  run(HINSTANCE hInstance,
+    run(HINSTANCE hInstance,
       HINSTANCE hPrevInstance,
       LPWSTR lpCmdLine,
       int nCmdShow,
@@ -72,7 +72,7 @@ public:
     * @return LRESULT Resultado del mensaje.
     */
   HRESULT
-  resize(HWND hwwnd, LPARAM lparam);
+    resize(HWND hwwnd, LPARAM lparam);
 
   /**
     * @brief Procesa los mensajes de la aplicación.
@@ -84,7 +84,7 @@ public:
     * @return LRESULT Resultado del mensaje.
     */
   void
-  InputActionMap(float DeltaTime);
+    InputActionMap(float DeltaTime);
 
   /**
     * @brief Procesa los mensajes de la aplicación.
@@ -96,11 +96,11 @@ public:
     * @return LRESULT Resultado del mensaje.
     */
   void
-  updateCamera();
+    updateCamera();
 
   /**
     * @brief Procesa los mensajes de la aplicación.
-    * 
+    *
     * @param hWnd Ventana de la aplicación.
     * @param message Mensaje de la aplicación.
     * @param wParam Primer parámetro del mensaje.
@@ -108,7 +108,7 @@ public:
     * @return LRESULT Resultado del mensaje.
     */
   void
-  rotateCamera(int mouseX, int mouseY);
+    rotateCamera(int mouseX, int mouseY);
 
 public:
   Window															m_window;
@@ -147,10 +147,22 @@ public:
   ModelLoader m_Naser;
   EngineUtilities::TSharedPointer<Actor> Naser;
   std::vector<Textura> m_NaserTextures;
-  Textura m_default;
-  EngineUtilities::Vector3 m_NaserPosition = EngineUtilities::Vector3(10.0f, -2.0f, 2.0f);
-  EngineUtilities::Vector3 m_NaserRotation = EngineUtilities::Vector3(XM_PI / 10.0f, 0.0f, XM_PI / -15.0f);
+
+  //Neco actor obj
+  ModelLoader m_Neco;
+  EngineUtilities::TSharedPointer<Actor> Neco;
+  std::vector<Textura> m_NecoTextures;
+
+  std::vector< EngineUtilities::TSharedPointer<Actor>> m_actors;
+
+
+  EngineUtilities::Vector3 m_NaserPosition = EngineUtilities::Vector3(-0.084f, -1.475f, 2.0f);
+  EngineUtilities::Vector3 m_NaserRotation = EngineUtilities::Vector3(-0.036, 3.031f, -0.035f);
   EngineUtilities::Vector3 m_NaserScale = EngineUtilities::Vector3(0.03f, 0.03f, 0.03f);
+
+  EngineUtilities::Vector3 m_NecoPosition = EngineUtilities::Vector3(-4.287f, -1.089f, 2.0f);
+  EngineUtilities::Vector3 m_NecoRotation = EngineUtilities::Vector3(-0.036, 1.678f, -0.035f);
+  EngineUtilities::Vector3 m_NecoScale = EngineUtilities::Vector3(1.989f, 1.941f, 1.941f);
 
   bool keys[256] = { false };
   float sensivility = 0.002f;

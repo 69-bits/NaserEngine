@@ -1,6 +1,6 @@
 #pragma once
 #include "Prerequisites.h"
-#include "Vectors/Vector3.h"
+#include "Utilities/Vectors/Vector3.h"
 #include "ComponentType.h"
 
 class 
@@ -59,11 +59,9 @@ public:
   void
   translate(const EngineUtilities::Vector3& translation);
 
- EngineUtilities::Vector3 position; ///< Posición del objeto
+  EngineUtilities::Vector3 position; ///< Posición del objeto
   EngineUtilities::Vector3 rotation; ///< Rotación del objeto
   EngineUtilities::Vector3 scale; ///< Escala del objeto
-
-private:
  
 
 public:

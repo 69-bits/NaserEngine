@@ -21,10 +21,10 @@
 #include <imgui_internal.h>
 #include "imgui_impl_win32.h"
 
-#include "Memory/TSharedPointer.h"
-#include "Memory/TWeakPointer.h"
-#include "Memory/TStaticPtr.h"
-#include "Memory/TWeakPointer.h"
+#include "Utilities/Memory/TSharedPointer.h"
+#include "Utilities/Memory/TWeakPointer.h"
+#include "Utilities/Memory/TStaticPtr.h"
+#include "Utilities/Memory/TWeakPointer.h"
 
 
 
@@ -119,4 +119,12 @@ Camera {
     yaw = 0.0f; // Ángulo de rotación en el eje Y
     pitch = 0.0f; // Ángulo de rotación en el eje X
   }
+};
+
+struct LoadDataOBJ {
+  std::string name; ///< Nombre del objeto.
+  std::vector<SimpleVertex> vertex; ///< Vértices del objeto.
+  std::vector<unsigned int> index; ///< Índices de los vértices.
+  int numVertex = 0; ///< Número de vértices.
+  int numIndex = 0; ///< Número de índices.
 };

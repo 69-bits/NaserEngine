@@ -58,8 +58,8 @@ public:
   render(DeviceContext& deviceContext,
       unsigned int StartSlot,
       unsigned int NumBuffers,
-      DXGI_FORMAT format = DXGI_FORMAT_UNKNOWN,
-      bool setPixelShader = false);
+      bool setPixelShader = false,
+      DXGI_FORMAT format = DXGI_FORMAT_UNKNOWN);
 
   /* @brief Destruye el Buffer
    * @return void

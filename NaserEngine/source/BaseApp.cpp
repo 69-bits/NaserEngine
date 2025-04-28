@@ -204,10 +204,10 @@ BaseApp::init() {
 
 	m_gui.Init(m_window.m_hWnd, m_device.m_device, m_deviceContext.m_deviceContext);
 
-	m_default.initTexture(m_device, "Models/Naser.fbm/mat_naser.png", ExtensionType::PNG);
-	//m_NaserTextures.push_back(mat_naser);
-	m_NaserTextures.push_back(m_default);
+	Textura mat_Naser;
 
+	mat_Naser.initTexture(m_device, "Models/Naser.fbm/mat_naser.png", ExtensionType::PNG);
+	m_NaserTextures.push_back(mat_Naser);
 
 	m_Naser.LoadFBX_model("Models/Naser.fbx");
 	Naser = EngineUtilities::MakeShared<Actor>(m_device);
@@ -219,8 +219,10 @@ BaseApp::init() {
 		// Init Actor Mesh
 		Naser->setMesh(m_device, m_Naser.m_meshes);
 		// Init Actor Textures
-		Naser->setTextures(m_NaserTextures, m_device);
+		Naser->setTextures(m_NaserTextures);
+    Naser->setName("Naser");
 
+    m_actors.push_back(Naser);
 		std::string msg = Naser->getName() + " - Actor accessed successfully.";
 		MESSAGE("Actor", "Actor", msg.c_str());
 	}
@@ -228,7 +230,41 @@ BaseApp::init() {
 		MESSAGE("Actor", "Actor", "Actor resource not found.");
 	}
 
-	return S_OK;
+  // Load OBJ model
+	m_Neco.LoadOBJ_model("Models/NecoArc.obj");
+	m_NecoTextures.clear();
+	for (size_t i = 0; i < m_Neco.m_meshes.size(); ++i) {
+		Textura tex;
+		tex.initTexture(m_device, "Models/Neco.fbm/NecoColor.png", ExtensionType::PNG);
+		m_NecoTextures.push_back(tex);
+	}
+	
+  Neco = EngineUtilities::MakeShared<Actor>(m_device);
+
+  if (!Neco.isNull()) {
+    Neco->getComponent<Transform>()->setTransform(m_NecoPosition, m_NecoRotation, m_NecoScale);
+		Neco->setMesh(m_device, m_Neco.m_meshes);
+    
+    Neco->setTextures(m_NecoTextures);
+    Neco->setName("NecoArc");
+    m_actors.push_back(Neco);
+		if (!m_NecoTextures.empty()) {
+      MESSAGE("Actor", "Actor", "Textures found.");
+		}
+		else {
+			MESSAGE("Actor", "Actor", "No textures found.");
+		}
+
+
+    
+
+    std::string msg = Neco->getName() + " - Actor accessed successfully.";
+    MESSAGE("Actor", "Actor", msg.c_str());
+  }
+  else {
+    MESSAGE("Actor", "Actor", "Actor resource not found.");
+  }
+
 }
 
 void 
@@ -244,6 +280,7 @@ BaseApp::CleanupDevice() {
 	m_deviceContext.destroy();
 	m_device.destroy();
 	Naser->destroy();
+  Neco->destroy();
 	//m_samplerState.destroy();
   m_gui.destroy();
 }
@@ -326,6 +363,12 @@ BaseApp::update() {
 
   Naser->update(0, m_deviceContext);
 
+	if (!Neco.isNull())
+	{
+		Neco->update(0, m_deviceContext);
+	}
+  
+
 	//g_deviceContext.UpdateSubresource(g_pCBChangeOnResize, 0, nullptr, &cbChangesOnResize, 0, 0);
 }
 
@@ -365,6 +408,7 @@ BaseApp::render() {
 	m_changeOnResize.render(m_deviceContext, 1, 1);
 	//m_changesEveryFrame.render(m_deviceContext, 2, 1);
 Naser->render(m_deviceContext);
+Neco->render(m_deviceContext);
 	//m_modelTexture.render(m_deviceContext, 0, 1);
 
 	//g_deviceContext.PSSetConstantBuffers(2, 1, &g_pCBChangesEveryFrame);
