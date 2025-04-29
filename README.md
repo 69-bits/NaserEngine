@@ -1,8 +1,10 @@
 # NaserEngine
 
-**NaserEngine** es un motor de juego ligero y modular construido sobre DirectX 11. Está diseñado para ofrecer una base sólida en gráficos y renderizado en Windows, facilitando el aprendizaje y desarrollo de aplicaciones interactivas y juegos. El motor implementa componentes esenciales como la creación de dispositivos Direct3D, gestión del swap chain, render target views, depth stencil views y manejo de texturas, organizados en una arquitectura modular y extensible.
+**NaserEngine** es un motor de juego ligero y modular construido sobre DirectX 11. Está diseñado para ofrecer una base sólida en gráficos y renderizado en Windows, facilitando el aprendizaje y desarrollo de aplicaciones interactivas y juegos. El motor implementa componentes esenciales como la creación de dispositivos Direct3D, gestión del swap chain, render target views, depth stencil views y manejo de texturas, organizados en una arquitectura modular y extensible. Todo esto permitiendo la inclusión de modelos 3D tanto de FBX, como de OBJ.
 
 ## Características
+- **Subir modelos 3D (FBX y OBJ):**  
+  Implementa las SDK y scripts necesarios para incluir modelos 3D (de los tipos mencionados) para ser visualizados y modificados en escena .
 
 - **DirectX 11 Rendering Pipeline:**  
   Implementa las etapas fundamentales de DirectX 11, incluyendo la creación y configuración del dispositivo, el contexto, el swap chain y los recursos de renderizado.
@@ -39,27 +41,6 @@ Abre el archivo `NaserEngine.sln` en Visual Studio.
 
 Selecciona el modo **Debug** o **Release** y compila la solución.
 
-## Estructura del Proyecto
-
-### /src:
-Contiene el código fuente del motor.
-- **Device:** Manejo de creación y administración del dispositivo Direct3D.
-- **DeviceContext:** Administración del contexto de renderizado.
-- **SwapChain:** Gestión del swap chain y presentación del backbuffer.
-- **RenderTargetView:** Implementación de las vistas de destino para el renderizado.
-- **DepthStencilView:** Gestión del buffer de profundidad y stencil.
-- **Textura:** Manejo de recursos de textura.
-- **Window:** Creación y administración de ventanas mediante Win32.
-
-### /include:
-Archivos de cabecera que definen la interfaz de los módulos del motor.
-
-### /docs:
-Documentación, recursos y guías de uso del motor.
-
-### /libs:
-(Opcional) Dependencias de terceros o bibliotecas adicionales utilizadas por el motor.
-
 ## Uso y Extensibilidad
 
 NaserEngine está diseñado para ser un punto de partida flexible:
@@ -82,7 +63,10 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENS
 
 ## Agradecimientos
 
+- **Profesor Roberto Charreton Kaplun:**
+  Agradecimientos especiales al profesor encargado de enseñar y guiarnos durante nuestra travesia en la creacion de un Engine.
 - **Documentación Oficial de DirectX 11:**  
   Fuente clave para la implementación de las técnicas de renderizado.
 - **Comunidad Open Source:**  
   Agradecimientos a todas las contribuciones y recursos compartidos en línea que han ayudado a dar forma a NaserEngine.
+
